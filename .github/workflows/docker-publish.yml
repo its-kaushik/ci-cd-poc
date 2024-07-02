@@ -18,8 +18,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t yourusername/my-express-app .
-          docker tag yourusername/my-express-app yourusername/my-express-app:latest
+          docker build -t mayankkaushik/my-express-app .
+          docker tag mayankkaushik/my-express-app mayankkaushik/my-express-app:latest
 
       - name: Push to DockerHub
-        run: docker push yourusername/my-express-app:latest
+        run: docker push mayankkaushik/my-express-app:latest
