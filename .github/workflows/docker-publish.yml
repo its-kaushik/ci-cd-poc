@@ -1,0 +1,25 @@
+name: Docker Publish
+
+on:
+  push:
+    branches:
+      - main # Define the branch to trigger the workflow
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Build the Docker image
+        run: |
+          docker build -t yourusername/my-express-app .
+          docker tag yourusername/my-express-app yourusername/my-express-app:latest
+
+      - name: Push to DockerHub
+        run: docker push yourusername/my-express-app:latest
